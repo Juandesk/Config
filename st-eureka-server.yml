@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: "develop"
+
+---
+spring:
+  profiles: develop
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+server:
+  port: 8761
+
+---
+spring:
+  profiles: production
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+server:
+  port: 8762

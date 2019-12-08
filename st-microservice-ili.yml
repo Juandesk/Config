@@ -1,0 +1,64 @@
+spring:
+  profiles:
+    active: "develop"
+  servlet:
+    multipart:
+      maxFileSize: 250MB
+      maxRequestSize: 250MB
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+iliProcesses:
+    temporalDirectoryPrefix: ilivalidator_
+
+endpoints:
+  enabled: false
+  info:
+    enabled: true
+  health:
+    enabled: true
+  metrics:
+    enabled: true
+  trace:
+    enabled: true
+
+server:
+  port: ${PORT:0}
+  tomcat:
+    max-threads: 0
+
+---
+spring:
+  profiles: develop
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+iliProcesses:
+  uploadedFiles: /home/felipe/Downloads/uploads
+  downloadedFiles: /home/felipe/Downloads/downloads
+  iliDirectory: /home/felipe/Documents/LADM_COL/Catastro_Multiproposito/2.9.6
+  iliDirectoryPlugins: /home/felipe/Documents/LADM_COL/Catastro_Multiproposito/2.9.6/plugins
+  models: "Cartografia_Referencia_V2_9_6;Avaluos_V2_9_6;Operacion_V2_9_6;LADM_COL_V1_2;Formulario_Catastro_V2_9_6;ISO19107_PLANAS_V1;Datos_Gestor_Catastral_V2_9_6;Datos_SNR_V2_9_6;Datos_Integracion_Insumos_V2_9_6"
+  srs: "3116"
+
+---
+spring:
+  profiles: production
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8762/eureka
+
+ilivalidator:
+  uploadedFiles: /opt/uploads
+  downloadedFiles: /opt/downloads
+  iliDirectory: /opt/models
+  iliDirectoryPlugins: /opt/models/plugins
+  models: "Cartografia_Referencia_V2_9_6;Avaluos_V2_9_6;Operacion_V2_9_6;LADM_COL_V1_2;Formulario_Catastro_V2_9_6;ISO19107_PLANAS_V1;Datos_Gestor_Catastral_V2_9_6;Datos_SNR_V2_9_6;Datos_Integracion_Insumos_V2_9_6"
+  srs: "3116"
